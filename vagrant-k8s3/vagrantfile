@@ -1,0 +1,15 @@
+Vagrant.configure("2") do |config|
+  
+    config.vm.define "k8s-3" do |k8s3|
+      k8s3.vm.box = "ubuntu/focal64"
+      k8s3.vm.hostname = "k8s-3"
+      k8s3.vm.network "private_network", ip: "192.168.50.14"
+      k8s3.vm.provider "virtualbox" do |vb|
+        vb.memory = "2048"
+        vb.cpus = 2
+      end
+      k8s3.vm.provision "shell", path: "provision.sh"
+    end
+  
+  end
+  

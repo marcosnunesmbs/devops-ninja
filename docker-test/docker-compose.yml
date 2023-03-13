@@ -1,0 +1,51 @@
+version: '3'
+services:
+  k8s-1:
+    image: rancher/rancher-agent:v2.4.3
+    container_name: k8s-1
+    privileged: true
+    restart: unless-stopped
+    environment:
+      - RANCHER_AGENT_TOKEN=${RANCHER_AGENT_TOKEN}
+      - RANCHER_AGENT_CA_CHECKSUM=${RANCHER_AGENT_CA_CHECKSUM}
+      - RANCHER_IP=${RANCHER_IP}
+    network_mode: host
+    volumes:
+      - k8s-1-kubernetes:/etc/kubernetes
+      - k8s-1-run:/var/run
+    command: "--server http://${RANCHER_IP} --token ${RANCHER_AGENT_TOKEN} --ca-checksum ${RANCHER_AGENT_CA_CHECKSUM} --node-name k8s-1 --worker"
+  k8s-2:
+    image: rancher/rancher-agent:v2.4.3
+    container_name: k8s-2
+    privileged: true
+    restart: unless-stopped
+    environment:
+      - RANCHER_AGENT_TOKEN=${RANCHER_AGENT_TOKEN}
+      - RANCHER_AGENT_CA_CHECKSUM=${RANCHER_AGENT_CA_CHECKSUM}
+      - RANCHER_IP=${RANCHER_IP}
+    network_mode: host
+    volumes:
+      - k8s-2-kubernetes:/etc/kubernetes
+      - k8s-2-run:/var/run
+    command: "--server http://${RANCHER_IP} --token ${RANCHER_AGENT_TOKEN} --ca-checksum ${RANCHER_AGENT_CA_CHECKSUM} --node-name k8s-2 --worker"
+  k8s-3:
+    image: rancher/rancher-agent:v2.4.3
+    container_name: k8s-3
+    privileged: true
+    restart: unless-stopped
+    environment:
+      - RANCHER_AGENT_TOKEN=${RANCHER_AGENT_TOKEN}
+      - RANCHER_AGENT_CA_CHECKSUM=${RANCHER_AGENT_CA_CHECKSUM}
+      - RANCHER_IP=${RANCHER_IP}
+    network_mode: host
+    volumes:
+      - k8s-3-kubernetes:/etc/kubernetes
+      - k8s-3-run:/var/run
+    command: "--server http://${RANCHER_IP} --token ${RANCHER_AGENT_TOKEN} --ca-checksum ${RANCHER_AGENT_CA_CHECKSUM} --node-name k8s-3 --worker"
+volumes:
+  k8s-1-kubernetes:
+  k8s-1-run:
+  k8s-2-kubernetes:
+  k8s-2-run:
+  k8s-3-kubernetes:
+  k8s-3-run:
