@@ -1,4 +1,11 @@
 # Criando DEVOPS com Rancher e K8S localmente
+## Requisitos
+- Vagrant
+- VirtualBox
+- Git
+- Docker
+
+## Passo a passo
 
  - Acesse a pasta vagrant-rancher e execute o vagrant
 ```
